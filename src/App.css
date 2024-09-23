@@ -111,6 +111,9 @@ html, body {
   text-decoration: underline;
 }
 
+/* Author CSS */
+
+
 /* Responsive layout adjustments */
 @media (max-width: 480px) {
   .profile-section {
