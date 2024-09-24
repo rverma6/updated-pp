@@ -117,7 +117,7 @@ html, body {
 /* Responsive layout adjustments */
 @media (max-width: 480px) {
   .profile-section {
-    margin-top: 75px;
+    margin-top: 125px;
     margin-bottom: 20px;
   }
   
