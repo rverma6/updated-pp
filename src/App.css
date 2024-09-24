@@ -117,13 +117,15 @@ html, body {
 /* Responsive layout adjustments */
 @media (max-width: 480px) {
   .profile-section {
-    margin-top: 125px;
     margin-bottom: 20px;
+    background-attachment: fixed;
   }
   
   .profile-img {
     width: 80px;
     height: 80px;
+    top: 20px;
+    position: relative;
   }
   
   .greeting-text {
