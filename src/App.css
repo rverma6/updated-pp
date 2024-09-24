@@ -133,8 +133,8 @@ html, body {
   }
 
   .nav-links {
-    flex-direction: row;
-    gap: 12px;
+    flex-direction: column;
+    gap: 1px;
   }
 
   .description {
