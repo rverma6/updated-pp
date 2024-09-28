@@ -27,7 +27,7 @@ function App() {
             I'm a senior at the University of Illinois at Urbana-Champaign studying computer science, statistics, and math.
             I build stuff in my free time. Currently, I'm working on <a href="https://10xLabs.tech" target="_blank" rel="noopener noreferrer">10xLabs</a>
             , a student focused venture studio at the University of Illinois. 
-            I'm also building Synergy, a platform to match job applicants with their perfect team fit. Feel free to reach out to me at <a href="https://hi@rayvaverma.com">hi@rayvaverma.com</a>.
+            I'm also building Synergy, a platform to match job applicants with their perfect team fit. Feel free to reach out to me at <a href="mailto:hi@rayvaverma.com">hi@rayvaverma.com</a>.
           </p>
         </div>
       </main>
