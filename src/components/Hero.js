@@ -55,7 +55,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
             >
               software engineer
-            </motion.a> with a background in machine learning and AI, passionate 
+            </motion.a>  at the University of Illinois at Urbana-Champaign studying statistics, computer science, and mathematics with a background in machine learning and AI. I'm passionate 
             about full-stack development and creating accessible, human-centered digital experiences. 
             Currently, I'm focused on building <motion.a 
               href="https://10xlabs.tech" 
