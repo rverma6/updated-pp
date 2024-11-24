@@ -12,7 +12,7 @@ export const allProjects = [
     link: "https://github.com/rverma6/drug-interaction-gnn.git"
   },
   {
-    name: "Project Highlight: How Can I Relate This Back to Hardware?",
+    name: "How Can I Relate This Back to Hardware?",
     description: "A fun project inspired by my meche friend who relates everything to hardware. Give it a topic, and it'll find a way to bring it back to hardware engineering!",
     longDescription: "Created an entertaining AI-powered application that mimics my mechanical engineering friend's unique ability to connect any topic back to hardware engineering. Users can input any subject, and the system generates creative, often humorous explanations drawing parallels to mechanical engineering concepts and hardware design principles.",
     technologies: ["Python", "OpenAI API", "Flask", "React", "MongoDB", "Docker"],
