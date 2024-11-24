@@ -1,24 +1,20 @@
-import { ArrowUpRight, Twitter, Mail } from "lucide-react";
-import React from "react";
-import { motion } from "framer-motion";
+import { ArrowUpRight, Twitter, Mail, Github, X } from "lucide-react";
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { allProjects } from './Projects';
 
 export default function Hero() {
-  const featuredProjects = [
-    {
-      name: "Project One",
-      description: "A revolutionary app that helps people learn faster",
-      link: "/projects",
-    },
-    {
-      name: "Project Two",
-      description: "AI-powered tool for productivity enhancement",
-      link: "/projects",
-    },
-  ];
+  const featuredProjects = allProjects.slice(0, 2);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleProjectClick = (project, e) => {
+    e.preventDefault();
+    setSelectedProject(selectedProject?.name === project.name ? null : project);
+  };
 
   return (
-    <main className="min-h-screen w-full bg-black text-white">
+    <main className="min-h-screen w-full bg-black text-white pb-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="pt-32 pb-8">
           <motion.span
@@ -36,10 +32,10 @@ export default function Hero() {
             className="space-y-4"
           >
             <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold">
-              Rayva
+              Rayva Verma
             </h1>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-gray-400 font-semibold">
-              Software Engineer
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-gray-400 font-semibold">
+              Building Digital Experiences
             </h2>
           </motion.div>
         </div>
@@ -51,12 +47,38 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p className="text-xl text-gray-400 leading-relaxed">
-            I'm a software engineer based in [Your Location], specializing in building exceptional digital experiences. 
-            Currently, I'm focused on building accessible, human-centered products.
+            I'm a <motion.a 
+              href="https://github.com/rverma6" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-400 transition-colors"
+              whileHover={{ scale: 1.05 }}
+            >
+              software engineer
+            </motion.a> with a background in machine learning and AI, passionate 
+            about full-stack development and creating accessible, human-centered digital experiences. 
+            Currently, I'm focused on building <motion.a 
+              href="https://10xlabs.tech" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-400 transition-colors"
+              whileHover={{ scale: 1.05 }}
+            >
+              10xLabs
+            </motion.a>, a collegiage venture studio at the University of Illinois at Urbana-Champaign. Sometimes, I              <motion.a 
+
+              href="https://substack.com" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-blue-400 transition-colors"
+              whileHover={{ scale: 1.05 }}
+            >
+               write
+            </motion.a>.
           </p>
           <div className="mt-8 flex space-x-6">
             <motion.a
-              href="mailto:email@example.com"
+              href="mailto:rayvaverma18@gmail.com"
               className="text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors font-mono"
               whileHover={{ scale: 1.05 }}
             >
@@ -81,25 +103,59 @@ export default function Hero() {
             </h2>
             <div className="grid grid-cols-1 gap-8">
               {featuredProjects.map((project, index) => (
-                <Link to={project.link} key={index}>
-                  <motion.div
+                <div key={index}>
+                  <motion.a
+                    href={project.link}
+                    onClick={(e) => handleProjectClick(project, e)}
                     className="group block border border-gray-800 p-8 rounded-lg hover:border-white/20 transition-all bg-gray-900/20"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ y: -4 }}
                   >
-                    <div className="flex justify-between items-start">
-                      <div>
+                    <div className="flex justify-between items-start gap-8">
+                      <div className="flex-1">
                         <h3 className="text-2xl font-medium group-hover:text-white transition-colors">
                           {project.name}
                         </h3>
                         <p className="text-gray-400 mt-4 text-lg">{project.description}</p>
                       </div>
-                      <ArrowUpRight className="h-6 w-6 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
+                      <ArrowUpRight className="h-10 w-10 flex-shrink-0 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
                     </div>
-                  </motion.div>
-                </Link>
+                  </motion.a>
+                  {selectedProject?.name === project.name && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-4 p-6 border border-gray-800 rounded-lg bg-gray-900/40">
+                        <div className="flex justify-between items-start mb-4">
+                          <h4 className="text-xl font-medium">Project Details</h4>
+                          <button
+                            onClick={() => setSelectedProject(null)}
+                            className="text-gray-400 hover:text-white"
+                          >
+                            <X className="h-5 w-5" />
+                          </button>
+                        </div>
+                        <p className="text-gray-400 mb-4">{project.longDescription}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {project.technologies.map((tech, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
               ))}
             </div>
           </section>
@@ -112,14 +168,14 @@ export default function Hero() {
             <div className="space-y-12">
               {[
                 {
-                  company: "Company One",
-                  role: "Software Engineer",
-                  description: "Built scalable applications serving millions of users",
+                  company: "10xLabs",
+                  role: "Co-Lead",
+                  description: "A student-run venture studio that helps technical student founders build venture-backable startups by providing mentorship, resources, and a collaborative environment to scale their ideas.",
                 },
                 {
-                  company: "Company Two",
-                  role: "Frontend Developer",
-                  description: "Led development of company's main product",
+                  company: "Symbiosis",
+                  role: "Founder",
+                  description: "An AI-driven platform focused on revolutionizing hiring by matching applicants with teams for perfect fit, improving team cohesion and driving long-term success.",
                 },
               ].map((exp, index) => (
                 <motion.div
@@ -136,13 +192,13 @@ export default function Hero() {
                   <p className="text-gray-500 mt-4">{exp.description}</p>
                 </motion.div>
               ))}
-              <Link to="/experience">
+              <Link to="/experience" className="mt-8 block">
                 <motion.div 
                   className="text-gray-400 hover:text-white transition-colors inline-flex items-center"
                   whileHover={{ x: 4 }}
                 >
-                  View all experience
-                  <ArrowUpRight className="h-5 w-5 ml-2" />
+                  View all experiences
+                  <ArrowUpRight className="h-6 w-6 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
                 </motion.div>
               </Link>
             </div>
@@ -152,7 +208,7 @@ export default function Hero() {
             <h2 className="text-3xl font-bold">Get In Touch</h2>
             <div className="flex space-x-6">
               <motion.a
-                href="https://twitter.com"
+                href="https://twitter.com/vermray"
                 className="flex items-center text-gray-400 hover:text-white transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
@@ -160,7 +216,28 @@ export default function Hero() {
                 Twitter
               </motion.a>
               <motion.a
-                href="mailto:email@example.com"
+                href="https://github.com/rverma6"
+                className="flex items-center text-gray-400 hover:text-white transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Github className="h-5 w-5 mr-2" />
+                GitHub
+              </motion.a>
+              <motion.a
+                href="https://rayvaverma.substack.com/"
+                className="flex items-center text-gray-400 hover:text-white transition-colors"
+                whileHover={{ scale: 1.05 }}
+              >
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className="h-5 w-5 mr-2 fill-current"
+                >
+                  <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+                </svg>
+                Substack
+              </motion.a>
+              <motion.a
+                href="mailto:rayvaverma18@gmail.com"
                 className="flex items-center text-gray-400 hover:text-white transition-colors"
                 whileHover={{ scale: 1.05 }}
               >

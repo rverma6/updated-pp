@@ -5,19 +5,34 @@ import BackToHome from './BackToHome';
 const ExperiencePage = () => {
   const experiences = [
     {
-      company: "Company One",
-      role: "Software Engineer",
-      description: "Built scalable applications serving millions of users",
+      company: "10xLabs",
+      role: "Co-Lead",
+      description: "A student-run venture studio that helps technical student founders build venture-backable startups by providing mentorship, resources, and a collaborative environment to scale their ideas.",
     },
     {
-      company: "Company Two",
-      role: "Frontend Developer",
-      description: "Led development of company's main product",
+      company: "Symbiosis",
+      role: "Founder",
+      description: "An AI-driven platform focused on revolutionizing hiring by matching applicants with teams for perfect fit, improving team cohesion and driving long-term success.",
+    },
+    {
+      company: "University of Illinois at Urbana-Champaign",
+      role: "ML Researcher",
+      description: "Researching fairness in machine learning, focusing on developing equitable algorithms and addressing biases in predictive models to ensure inclusivity and trustworthiness in AI systems.",
+    },
+    {
+      company: "Illinois Founders",
+      role: "Head of Research and Development",
+      description: "Led a team of 13 developers to support non-technical founders in creating their MVPs, managing three distinct teams working on diverse projects to bring ideas to life.",
+    },
+    {
+      company: "Illinois Founders",
+      role: "Software Engineer",
+      description: "Built a cofounder match platform to help students connect with potential cofounders and developed a Startup Career Fair platform to foster connections between students and startups.",
     },
   ];
 
   return (
-    <main className="min-h-screen w-full bg-black text-white pt-32">
+    <main className="min-h-screen w-full bg-black text-white pt-32 pb-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <BackToHome />
         <motion.h1 

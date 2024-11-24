@@ -3,57 +3,79 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, X } from 'lucide-react';
 import BackToHome from './BackToHome';
 
+export const allProjects = [
+  {
+    name: "GNN-Driven Drug Interaction Predictor",
+    description: "A comprehensive platform leveraging Graph Neural Networks to predict drug-drug interactions and potential side effects, helping researchers streamline the drug discovery process.",
+    longDescription: "This platform leverages Graph Neural Networks (GNNs) to predict drug-drug interactions and potential side effects, transforming the drug discovery process. By representing drugs as graphs—where atoms are nodes and bonds are edges—the GNN learns complex molecular patterns to identify interactions with high accuracy. It processes molecular data from SMILES strings and uses advanced modeling techniques to streamline drug development, reducing costs and risks.",
+    technologies: ["Python", "PyTorch", "NetworkX", "scikit-learn", "RDKit", "Docker"],
+    link: "https://github.com/rverma6/drug-interaction-gnn.git"
+  },
+  {
+    name: "Project Highlight: How Can I Relate This Back to Hardware?",
+    description: "A fun project inspired by my meche friend who relates everything to hardware. Give it a topic, and it'll find a way to bring it back to hardware engineering!",
+    longDescription: "Created an entertaining AI-powered application that mimics my mechanical engineering friend's unique ability to connect any topic back to hardware engineering. Users can input any subject, and the system generates creative, often humorous explanations drawing parallels to mechanical engineering concepts and hardware design principles.",
+    technologies: ["Python", "OpenAI API", "Flask", "React", "MongoDB", "Docker"],
+    link: "#"
+  },
+  {
+    name: "Recidivism Prediction with Fairness Assessment",
+    description: "Built machine learning models to predict recidivism while evaluating and mitigating algorithmic bias across demographic groups.",
+    longDescription: "Developed neural networks and random forest models to predict recidivism using demographic and criminal data, with a focus on fairness metrics. Implemented both baseline and adversarial models to assess and mitigate potential biases related to race and gender. Used SMOTE for class imbalance and achieved 70.64% accuracy while reducing demographic parity difference from 0.5751 to 0.4866.",
+    technologies: ["Python", "TensorFlow", "scikit-learn", "SMOTE", "Pandas", "NumPy"],
+    link: "https://github.com/rverma6/recidivism-prediction-champaign"
+  },
+  {
+    name: "Fake Schema Generator",
+    description: "AI-powered platform that generates realistic test data based on user-defined database schemas with real-time editing capabilities.",
+    longDescription: "Built a dynamic schema generation tool that creates and populates database tables with realistic test data. Users can input queries to generate skeleton schemas, which are then populated with customizable test data. Integrated OpenAI for intelligent data generation and Redis for caching, with a Supabase backend for real-time collaboration.",
+    technologies: ["JavaScript", "OpenAI API", "Redis", "Supabase", "React", "Node.js"],
+    link: "#"
+  },
+  {
+    name: "Smart Room Cleanup Assistant",
+    description: "Computer vision application that analyzes room photos to create personalized, step-by-step cleaning guides.",
+    longDescription: "Developed an AI-powered application that uses YOLO object detection to analyze photos of messy rooms and generate prioritized cleaning instructions. The system identifies objects, assesses clutter patterns, and creates customized cleaning plans to help users tackle organization without feeling overwhelmed.",
+    technologies: ["Python", "YOLO", "OpenCV", "TensorFlow", "Flask", "React"],
+    link: "#"
+  },
+  {
+    name: "Destination Wedding Travel Platform",
+    description: "Comprehensive travel coordination platform for destination wedding planning, streamlining guest travel arrangements.",
+    longDescription: "Created an all-in-one platform that simplifies destination wedding travel coordination. The system enables wedding planners to communicate with guests efficiently while providing integrated booking capabilities for flights and accommodations. Features real-time updates and collaborative planning tools.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "AWS", "Stripe API"],
+    link: "#"
+  }
+];
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   
-  const allProjects = [
-    {
-      name: "Project One",
-      description: "A revolutionary app that helps people learn faster",
-      longDescription: "This project is a comprehensive learning platform that utilizes AI to adapt to each user's learning style. Built with React, Node.js, and TensorFlow.js, it features real-time progress tracking, personalized learning paths, and interactive exercises.",
-      technologies: ["React", "Node.js", "TensorFlow.js", "MongoDB"],
-      link: "#",
-    },
-    {
-      name: "Project Two",
-      description: "AI-powered tool for productivity enhancement",
-      longDescription: "An innovative productivity tool that leverages machine learning to help users optimize their daily workflows. Features include smart task prioritization, automated scheduling, and performance analytics.",
-      technologies: ["Python", "React", "scikit-learn", "PostgreSQL"],
-      link: "#",
-    },
-    {
-      name: "Project Three",
-      description: "Full-stack web application with real-time features",
-      longDescription: "A full-stack web application that utilizes real-time technologies to provide users with a seamless and interactive experience. Built with React, Node.js, and Socket.io, it features real-time chat, notifications, and collaborative features.",
-      technologies: ["React", "Node.js", "Socket.io", "MongoDB"],
-      link: "#",
-    },
-    {
-      name: "Project Four",
-      description: "Mobile app built with React Native",
-      longDescription: "A mobile app that utilizes React Native to provide users with a seamless and interactive experience. Built with React Native, it features real-time progress tracking, personalized learning paths, and interactive exercises.",
-      technologies: ["React Native", "Node.js", "TensorFlow.js", "MongoDB"],
-      link: "#",
-    },
-  ];
-
   const handleProjectClick = (project, e) => {
     e.preventDefault();
     setSelectedProject(selectedProject?.name === project.name ? null : project);
   };
 
   return (
-    <main className="min-h-screen w-full bg-black text-white pt-32">
+    <main className="min-h-screen w-full bg-black text-white pt-32 pb-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <BackToHome />
         <motion.h1 
-          className="text-4xl font-bold mb-12"
+          className="text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           All Projects
         </motion.h1>
+        <motion.p
+          className="text-gray-400 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Click the arrow to learn more about each project
+        </motion.p>
         
         <div className="grid grid-cols-1 gap-8">
           {allProjects.map((project, index) => (
@@ -67,14 +89,14 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
               >
-                <div className="flex justify-between items-start">
-                  <div>
+                <div className="flex justify-between items-start gap-8">
+                  <div className="flex-1">
                     <h3 className="text-2xl font-medium group-hover:text-white transition-colors">
                       {project.name}
                     </h3>
                     <p className="text-gray-400 mt-4 text-lg">{project.description}</p>
                   </div>
-                  <ArrowUpRight className="h-6 w-6 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
+                  <ArrowUpRight className="h-10 w-10 flex-shrink-0 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
                 </div>
               </motion.a>
 
