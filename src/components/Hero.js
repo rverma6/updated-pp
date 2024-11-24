@@ -65,7 +65,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
             >
               10xLabs
-            </motion.a>, a collegiage venture studio at the University of Illinois at Urbana-Champaign. Sometimes, I              <motion.a 
+            </motion.a>, a collegiate venture studio at the University of Illinois at Urbana-Champaign. Sometimes, I              <motion.a 
 
               href="https://substack.com" 
               target="_blank"
