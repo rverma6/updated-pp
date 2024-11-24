@@ -27,8 +27,8 @@ const About = () => {
             <h2 className="text-2xl font-semibold text-white">Background</h2>
             <p className="text-lg text-gray-400 leading-relaxed">
               I'm a software engineer and lifelong Jeopardy enthusiast with a passion 
-              for building innovative digital experiences, especiallly using Kotlin. Being autistic gives me a unique perspective, 
-              and I'm driven to create technology that makes the world easier to navigate for others like me.
+              for building innovative digital experiences, especiallly using Kotlin. 
+              I'm driven to create technology that makes the world easier to navigate for others like me.
             </p>
           </section>
 
