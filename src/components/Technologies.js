@@ -7,7 +7,7 @@ const Technologies = () => {
   const techCategories = {
     "Languages": {
       icon: <Terminal className="w-5 h-5 text-white/70" />,
-      items: ["JavaScript", "Python", "C++", "Kotlin"]
+      items: ["JavaScript", "Python", "C++", "Kotlin", "C", "Java"]
     },
     "Frontend": {
       icon: <Globe className="w-5 h-5 text-white/70" />,
@@ -37,7 +37,7 @@ const Technologies = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Technologies
+          Technologies I Work With
         </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
