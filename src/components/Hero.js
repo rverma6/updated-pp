@@ -1,5 +1,5 @@
-import { ArrowUpRight, Twitter, Mail, Github, X } from "lucide-react";
-import React, { useState } from 'react';
+import { ArrowUpRight, Twitter, Mail, Github, X, Code } from "lucide-react";
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { allProjects } from './Projects';
@@ -7,6 +7,11 @@ import { allProjects } from './Projects';
 export default function Hero() {
   const featuredProjects = allProjects.slice(0, 2);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handleProjectClick = (project, e) => {
     e.preventDefault();
@@ -14,86 +19,110 @@ export default function Hero() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-black text-white pb-32">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen w-full bg-black text-white pb-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
+      
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-white/10 rounded-full"
+          initial={{
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            scale: Math.random() * 2
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{
+            duration: 5 + Math.random() * 5,
+            repeat: Infinity,
+            ease: "linear",
+            delay: Math.random() * 5
+          }}
+        />
+      ))}
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="pt-32 pb-8">
-          <motion.span
-            className="text-gray-400 font-mono text-sm mb-4 block"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Hi, my name is
-          </motion.span>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ 
+              scale: isLoaded ? 1 : 0.8,
+              opacity: isLoaded ? 1 : 0,
+            }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-12"
           >
-            <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold">
-              Rayva Verma
-            </h1>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl text-gray-400 font-semibold">
-              Building Digital Experiences
-            </h2>
+            <motion.h1 
+              className="text-6xl sm:text-7xl md:text-8xl font-bold mb-6"
+              initial={{ y: 40 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-300 to-white hover:from-blue-400 hover:via-purple-400 hover:to-pink-400 transition-all duration-500">
+                Rayva Verma
+              </span>
+            </motion.h1>
+            <motion.p
+              className="text-2xl text-gray-400 font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Building human-centered experiences through code
+            </motion.p>
           </motion.div>
-        </div>
 
-        <motion.div 
-          className="py-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <p className="text-xl text-gray-400 leading-relaxed">
-            I'm a <motion.a 
-              href="https://github.com/rverma6" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-400 transition-colors"
-              whileHover={{ scale: 1.05 }}
+          <div className="space-y-6 max-w-2xl">
+            <motion.div
+              className="text-lg text-gray-400 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
-              software engineer
-            </motion.a>  at the University of Illinois at Urbana-Champaign studying statistics, computer science, and math with a background in machine learning and AI. I'm passionate 
-            about full-stack development and creating accessible, human-centered experiences. 
-            Currently, I'm focused on building <motion.a 
-              href="https://10xlabs.tech" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-400 transition-colors"
-              whileHover={{ scale: 1.05 }}
-            >
-              10xLabs
-            </motion.a>, a collegiate venture studio. Sometimes, I              <motion.a 
-
-              href="https://substack.com" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-blue-400 transition-colors"
-              whileHover={{ scale: 1.05 }}
-            >
-               write
-            </motion.a>.
-          </p>
-          <div className="mt-8 flex space-x-6">
-            <motion.a
-              href="mailto:rayvaverma18@gmail.com"
-              className="text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors font-mono"
-              whileHover={{ scale: 1.05 }}
-            >
-              Get in touch
-            </motion.a>
-            <Link to="/projects">
-              <motion.div
-                className="text-gray-400 border border-gray-800 px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-mono"
+              <motion.a 
+                href="https://github.com/rverma6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-blue-400 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
-                View work
-              </motion.div>
-            </Link>
+                Software Engineer
+              </motion.a> and current senior at the University of Illinois Urbana-Champaign, 
+              focusing on the intersection of statistics, computer science, and machine learning. 
+              Currently building solutions that make technology more accessible and intuitive.
+            </motion.div>
+
+            
+
+            <motion.div
+              className="flex items-center space-x-6 pt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <motion.a
+                href="mailto:rayvaverma18@gmail.com"
+                className="text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors font-mono inline-flex items-center"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Mail className="w-4 h-4 mr-2" />
+                Get in touch
+              </motion.a>
+              <Link to="/projects">
+                <motion.div
+                  className="text-gray-400 border border-gray-800 px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-mono inline-flex items-center"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <Code className="w-4 h-4 mr-2" />
+                  View work
+                </motion.div>
+              </Link>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         <div className="space-y-32 py-32">
           <section id="featured-projects" className="space-y-12">
@@ -141,8 +170,17 @@ export default function Hero() {
                             <X className="h-5 w-5" />
                           </button>
                         </div>
+                        {project.preview && (
+                          <div className="mb-6 overflow-hidden rounded-lg">
+                            <img 
+                              src={project.preview} 
+                              alt={project.name}
+                              className="w-full h-64 object-cover object-center"
+                            />
+                          </div>
+                        )}
                         <p className="text-gray-400 mb-4">{project.longDescription}</p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mb-4">
                           {project.technologies.map((tech, i) => (
                             <span
                               key={i}
@@ -152,6 +190,17 @@ export default function Hero() {
                             </span>
                           ))}
                         </div>
+                        {project.link && project.link !== "#" && (
+                          <motion.a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-white hover:text-blue-400 transition-colors"
+                            whileHover={{ x: 4 }}
+                          >
+                            View Project <ArrowUpRight className="h-4 w-4 ml-1" />
+                          </motion.a>
+                        )}
                       </div>
                     </motion.div>
                   )}

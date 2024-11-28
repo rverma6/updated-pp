@@ -1,0 +1,51 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#111111"/>
+  
+  <!-- Title -->
+  <text x="600" y="120" fill="#FFFFFF" font-family="Inter" font-size="28" text-anchor="middle">Wedding Travel Coordination</text>
+
+  <!-- Central Platform Hub -->
+  <g transform="translate(600,400)">
+    <circle cx="0" cy="0" r="100" fill="#111111" stroke="#4F46E5" stroke-width="2"/>
+    <text x="0" y="0" fill="#4F46E5" font-family="Inter" font-size="18" text-anchor="middle">Travel Platform</text>
+  </g>
+
+  <!-- Connected Services -->
+  <g>
+    <!-- Flights -->
+    <g transform="translate(300,250)">
+      <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#111111" stroke="#22C55E" stroke-width="2"/>
+      <text x="0" y="8" fill="#22C55E" font-family="Inter" font-size="16" text-anchor="middle">Flights</text>
+      <path d="M70 0 L440 350" stroke="#22C55E" stroke-width="2" stroke-dasharray="4 4"/>
+    </g>
+
+    <!-- Hotels -->
+    <g transform="translate(900,250)">
+      <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#111111" stroke="#EF4444" stroke-width="2"/>
+      <text x="0" y="8" fill="#EF4444" font-family="Inter" font-size="16" text-anchor="middle">Hotels</text>
+      <path d="M-70 0 L-440 350" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
+    </g>
+
+    <!-- Guest List -->
+    <g transform="translate(300,550)">
+      <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#111111" stroke="#4F46E5" stroke-width="2"/>
+      <text x="0" y="8" fill="#4F46E5" font-family="Inter" font-size="16" text-anchor="middle">Guest List</text>
+      <path d="M70 0 L240 -100" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+    </g>
+
+    <!-- Updates -->
+    <g transform="translate(900,550)">
+      <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#111111" stroke="#22C55E" stroke-width="2"/>
+      <text x="0" y="8" fill="#22C55E" font-family="Inter" font-size="16" text-anchor="middle">Updates</text>
+      <path d="M-70 0 L-240 -100" stroke="#22C55E" stroke-width="2" stroke-dasharray="4 4"/>
+    </g>
+  </g>
+
+  <!-- Payment Integration -->
+  <g transform="translate(600,650)">
+    <rect x="-80" y="-20" width="160" height="40" rx="8" fill="#111111" stroke="#EF4444" stroke-width="2"/>
+    <text x="0" y="8" fill="#EF4444" font-family="Inter" font-size="14" text-anchor="middle">Stripe Integration</text>
+    <path d="M0 -30 L0 -150" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
+  </g>
+</svg> 

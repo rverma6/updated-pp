@@ -1,0 +1,56 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#111111"/>
+  
+  <!-- Title -->
+  <text x="600" y="120" fill="#FFFFFF" font-family="Inter" font-size="28" text-anchor="middle">Dynamic Schema Generation</text>
+
+  <!-- Input Query -->
+  <g transform="translate(200,250)">
+    <rect x="0" y="0" width="240" height="100" rx="8" fill="#111111" stroke="#4F46E5" stroke-width="2"/>
+    <text x="120" y="-20" fill="#4F46E5" font-family="Inter" font-size="16" text-anchor="middle">User Query</text>
+    <text x="120" y="40" fill="#4F46E5" font-family="monospace" font-size="14" text-anchor="middle">
+      CREATE TABLE users (
+        id INT PRIMARY KEY,
+        name VARCHAR(255)
+      )
+    </text>
+  </g>
+
+  <!-- AI Processing -->
+  <g transform="translate(600,300)">
+    <circle cx="0" cy="0" r="40" fill="#111111" stroke="#22C55E" stroke-width="2"/>
+    <text x="0" y="0" fill="#22C55E" font-family="Inter" font-size="24" text-anchor="middle">AI</text>
+    <!-- Processing Arrows -->
+    <path d="M-120 0 L-50 0" stroke="#22C55E" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M50 0 L120 0" stroke="#22C55E" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+
+  <!-- Generated Data -->
+  <g transform="translate(900,250)">
+    <rect x="0" y="0" width="240" height="160" rx="8" fill="#111111" stroke="#EF4444" stroke-width="2"/>
+    <text x="120" y="-20" fill="#EF4444" font-family="Inter" font-size="16" text-anchor="middle">Generated Test Data</text>
+    <text x="120" y="40" fill="#EF4444" font-family="monospace" font-size="14" text-anchor="middle">
+      {
+        "users": [
+          {"id": 1, "name": "John Doe"},
+          {"id": 2, "name": "Jane Smith"},
+          {"id": 3, "name": "Alex Chen"}
+        ]
+      }
+    </text>
+  </g>
+
+  <!-- Redis Cache -->
+  <g transform="translate(600,500)">
+    <rect x="-80" y="0" width="160" height="60" rx="8" fill="#111111" stroke="#4F46E5" stroke-width="2"/>
+    <text x="0" y="35" fill="#4F46E5" font-family="Inter" font-size="16" text-anchor="middle">Redis Cache</text>
+  </g>
+
+  <!-- Arrow Marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22C55E"/>
+    </marker>
+  </defs>
+</svg> 

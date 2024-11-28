@@ -36,6 +36,9 @@ const Navbar = () => {
         <Link to="/experience" className="text-gray-400 hover:text-white transition-colors font-mono text-sm">
           <span className="text-white/50 mr-1">03.</span>Experience
         </Link>
+        <Link to="/technologies" className="text-gray-400 hover:text-white transition-colors font-mono text-sm">
+          <span className="text-white/50 mr-1">04.</span>Technologies
+        </Link>
         <motion.a 
           href="/resume.pdf" 
           className="text-white border border-white/20 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors font-mono text-sm"

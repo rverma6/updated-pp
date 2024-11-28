@@ -1,0 +1,31 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#111111"/>
+  
+  <!-- Title -->
+  <text x="600" y="120" fill="#FFFFFF" font-family="Inter" font-size="28" text-anchor="middle">Room Analysis</text>
+
+  <!-- Room Scene -->
+  <g transform="translate(300,300)">
+    <!-- Room Outline -->
+    <rect x="0" y="0" width="600" height="400" rx="8" fill="#111111" stroke="#4F46E5" stroke-width="2"/>
+    
+    <!-- Detection Boxes -->
+    <rect x="50" y="50" width="100" height="80" rx="4" fill="none" stroke="#22C55E" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="100" y="90" fill="#22C55E" font-family="Inter" font-size="12" text-anchor="middle">Books</text>
+    
+    <rect x="200" y="150" width="120" height="60" rx="4" fill="none" stroke="#EF4444" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="260" y="190" fill="#EF4444" font-family="Inter" font-size="12" text-anchor="middle">Clothes</text>
+    
+    <rect x="400" y="200" width="150" height="150" rx="4" fill="none" stroke="#4F46E5" stroke-width="2" stroke-dasharray="4 4"/>
+    <text x="475" y="280" fill="#4F46E5" font-family="Inter" font-size="12" text-anchor="middle">Desk</text>
+  </g>
+
+  <!-- Cleanup Steps -->
+  <g transform="translate(1000,300)">
+    <text x="0" y="0" fill="#FFFFFF" font-family="Inter" font-size="16">Cleanup Steps:</text>
+    <text x="0" y="40" fill="#22C55E" font-family="Inter" font-size="14">1. Organize books</text>
+    <text x="0" y="80" fill="#EF4444" font-family="Inter" font-size="14">2. Sort clothes</text>
+    <text x="0" y="120" fill="#4F46E5" font-family="Inter" font-size="14">3. Clear desk</text>
+  </g>
+</svg> 

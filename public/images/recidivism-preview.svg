@@ -1,0 +1,37 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#111111"/>
+  
+  <!-- Title -->
+  <text x="600" y="120" fill="#FFFFFF" font-family="Inter" font-size="28" text-anchor="middle">Fairness-Aware Prediction System</text>
+
+  <!-- Baseline Model -->
+  <g transform="translate(300,250)">
+    <text x="0" y="-30" fill="#EF4444" font-family="Inter" font-size="20">Baseline Model</text>
+    <rect x="-80" y="0" width="160" height="100" rx="8" fill="none" stroke="#EF4444" stroke-width="2"/>
+    <text x="0" y="40" fill="#EF4444" font-family="Inter" font-size="18" text-anchor="middle">Accuracy: 72.31%</text>
+    <text x="0" y="70" fill="#EF4444" font-family="Inter" font-size="18" text-anchor="middle">Bias: 0.5751</text>
+  </g>
+
+  <!-- Fairness-Enhanced Model -->
+  <g transform="translate(900,250)">
+    <text x="0" y="-30" fill="#22C55E" font-family="Inter" font-size="20">Fairness-Enhanced Model</text>
+    <rect x="-80" y="0" width="160" height="100" rx="8" fill="none" stroke="#22C55E" stroke-width="2"/>
+    <text x="0" y="40" fill="#22C55E" font-family="Inter" font-size="18" text-anchor="middle">Accuracy: 70.64%</text>
+    <text x="0" y="70" fill="#22C55E" font-family="Inter" font-size="18" text-anchor="middle">Bias: 0.4866</text>
+  </g>
+
+  <!-- Demographic Parity Difference -->
+  <g transform="translate(600,500)">
+    <text x="0" y="-50" fill="#4F46E5" font-family="Inter" font-size="20" text-anchor="middle">Demographic Parity Difference</text>
+    
+    <!-- Progress Bar -->
+    <rect x="-200" y="0" width="400" height="40" rx="20" fill="#1F2937"/>
+    <rect x="-200" y="0" width="230" height="40" rx="20" fill="#EF4444" opacity="0.8"/>
+    <rect x="-200" y="0" width="195" height="40" rx="20" fill="#22C55E" opacity="0.8"/>
+    
+    <!-- Labels -->
+    <text x="-220" y="25" fill="#FFFFFF" font-family="Inter" font-size="16" text-anchor="end">0.0</text>
+    <text x="220" y="25" fill="#FFFFFF" font-family="Inter" font-size="16">1.0</text>
+  </g>
+</svg> 
