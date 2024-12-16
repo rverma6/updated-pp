@@ -61,8 +61,9 @@ export default function Hero() {
               animate={{ y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 transition-all duration-500">
-                Rayva Verma
+              Hey, I'm{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+                Rayva.
               </span>
             </motion.h1>
             <motion.h2 
@@ -71,7 +72,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Building human-centered experiences through code.
+              I build human-centered experiences through code.
             </motion.h2>
           </motion.div>
 
@@ -89,34 +90,34 @@ export default function Hero() {
                 className="text-white hover:text-blue-400 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
-                Software Engineer
-              </motion.a> and current senior at the University of Illinois Urbana-Champaign, 
-              focusing on the intersection of statistics, computer science, and machine learning. 
-              Currently building solutions that make technology more accessible and intuitive.
+                I'm a Software Engineer
+              </motion.a> and senior at the University of Illinois Urbana-Champaign, 
+              focusing on statistics, computer science, and math. 
+              Building solutions that make technology more accessible.
             </motion.div>
 
             
 
             <motion.div
-              className="flex items-center space-x-6 pt-8"
+              className="flex items-center space-x-8 pt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               <motion.a
                 href="mailto:rayvaverma18@gmail.com"
-                className="text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors font-mono inline-flex items-center"
+                className="w-64 text-white text-xl border border-white/20 px-8 py-4 rounded-lg hover:bg-white/10 transition-colors font-mono inline-flex items-center justify-center"
                 whileHover={{ scale: 1.05 }}
               >
-                <Mail className="w-4 h-4 mr-2" />
+                <Mail className="w-6 h-6 mr-3" />
                 Get in touch
               </motion.a>
               <Link to="/projects">
                 <motion.div
-                  className="text-gray-400 border border-gray-800 px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors font-mono inline-flex items-center"
+                  className="w-64 text-gray-400 text-xl border border-gray-800 px-8 py-4 rounded-lg hover:bg-gray-900 transition-colors font-mono inline-flex items-center justify-center"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Code className="w-4 h-4 mr-2" />
+                  <Code className="w-6 h-6 mr-3" />
                   View work
                 </motion.div>
               </Link>
