@@ -61,23 +61,23 @@ export default function Hero() {
               animate={{ y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-300 to-white hover:from-blue-400 hover:via-purple-400 hover:to-pink-400 transition-all duration-500">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 transition-all duration-500">
                 Rayva Verma
               </span>
             </motion.h1>
-            <motion.p
-              className="text-2xl text-gray-400 font-light"
+            <motion.h2 
+              className="text-3xl text-gray-400 mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Building human-centered experiences through code
-            </motion.p>
+              Building human-centered experiences through code.
+            </motion.h2>
           </motion.div>
 
           <div className="space-y-6 max-w-2xl">
             <motion.div
-              className="text-lg text-gray-400 leading-relaxed"
+              className="text-2xl text-gray-400 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
