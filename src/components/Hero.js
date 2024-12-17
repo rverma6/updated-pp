@@ -82,7 +82,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-            >
+            > I'm a {" "}
               <motion.a 
                 href="https://github.com/rverma6"
                 target="_blank"
@@ -90,7 +90,7 @@ export default function Hero() {
                 className="text-white hover:text-blue-400 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
-                I'm a Software Engineer
+                software engineer
               </motion.a> and senior at the University of Illinois Urbana-Champaign, 
               focusing on statistics, computer science, and math. 
               Building solutions that make technology more accessible.
