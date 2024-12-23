@@ -3,22 +3,21 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-black text-white;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  html, body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  section {
-    @apply relative;
-  }
-}
 
-@layer components {
-  .section-heading {
-    @apply text-3xl font-bold relative;
+  body {
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    font-family: var(--fonts-body);
+    color: white;
   }
-  
-  .section-number {
-    @apply text-gray-400 font-mono text-sm absolute -left-8;
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }

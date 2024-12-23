@@ -1,303 +1,185 @@
-import { ArrowUpRight, Twitter, Mail, Github, X, Code } from "lucide-react";
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { ArrowUpRight, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
-import { allProjects } from './Projects';
+import Cursor from './Cursor';
 
 export default function Hero() {
-  const featuredProjects = allProjects.slice(0, 2);
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  const handleProjectClick = (project, e) => {
-    e.preventDefault();
-    setSelectedProject(selectedProject?.name === project.name ? null : project);
-  };
+  const [activeSection, setActiveSection] = useState(null);
 
   return (
-    <main className="min-h-screen w-full bg-black text-white pb-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
-      
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-white/10 rounded-full"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            scale: Math.random() * 2
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.2, 0.5, 0.2]
-          }}
-          transition={{
-            duration: 5 + Math.random() * 5,
-            repeat: Infinity,
-            ease: "linear",
-            delay: Math.random() * 5
-          }}
-        />
-      ))}
+    <main className="relative flex items-center w-full min-h-screen bg-black overflow-hidden cursor-none">
+      <Cursor isActive={activeSection !== null} />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="pt-32 pb-8">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ 
-              scale: isLoaded ? 1 : 0.8,
-              opacity: isLoaded ? 1 : 0,
-            }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-12"
-          >
-            <motion.h1 
-              className="text-6xl sm:text-7xl md:text-8xl font-bold mb-6"
-              initial={{ y: 40 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            >
-              Hey, I'm{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                Rayva.
-              </span>
-            </motion.h1>
-            <motion.h2 
-              className="text-3xl text-gray-400 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              I build human-centered experiences through code.
-            </motion.h2>
-          </motion.div>
-
-          <div className="space-y-6 max-w-2xl">
-            <motion.div
-              className="text-2xl text-gray-400 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            > I'm a {" "}
-              <motion.a 
-                href="https://github.com/rverma6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-blue-400 transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                software engineer
-              </motion.a> and senior at the University of Illinois Urbana-Champaign, 
-              focusing on statistics, computer science, and math. 
-              Building solutions that make technology more accessible.
-            </motion.div>
-
-            
-
-            <motion.div
-              className="flex items-center space-x-8 pt-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <motion.a
-                href="mailto:rayvaverma18@gmail.com"
-                className="w-64 text-white text-xl border border-white/20 px-8 py-4 rounded-lg hover:bg-white/10 transition-colors font-mono inline-flex items-center justify-center"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Mail className="w-6 h-6 mr-3" />
-                Get in touch
-              </motion.a>
-              <Link to="/projects">
-                <motion.div
-                  className="w-64 text-gray-400 text-xl border border-gray-800 px-8 py-4 rounded-lg hover:bg-gray-900 transition-colors font-mono inline-flex items-center justify-center"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Code className="w-6 h-6 mr-3" />
-                  View work
-                </motion.div>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-
-        <div className="space-y-32 py-32">
-          <section id="featured-projects" className="space-y-12">
-            <h2 className="text-3xl font-bold relative">
-              <span className="text-gray-400 font-mono text-sm absolute -left-8">01.</span>
-              Featured Projects
-            </h2>
-            <div className="grid grid-cols-1 gap-8">
-              {featuredProjects.map((project, index) => (
-                <div key={index}>
-                  <motion.a
-                    href={project.link}
-                    onClick={(e) => handleProjectClick(project, e)}
-                    className="group block border border-gray-800 p-8 rounded-lg hover:border-white/20 transition-all bg-gray-900/20"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ y: -4 }}
-                  >
-                    <div className="flex justify-between items-start gap-8">
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-medium group-hover:text-white transition-colors">
-                          {project.name}
-                        </h3>
-                        <p className="text-gray-400 mt-4 text-lg">{project.description}</p>
-                      </div>
-                      <ArrowUpRight className="h-10 w-10 flex-shrink-0 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
-                    </div>
-                  </motion.a>
-                  {selectedProject?.name === project.name && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="mt-4 p-6 border border-gray-800 rounded-lg bg-gray-900/40">
-                        <div className="flex justify-between items-start mb-4">
-                          <h4 className="text-xl font-medium">Project Details</h4>
-                          <button
-                            onClick={() => setSelectedProject(null)}
-                            className="text-gray-400 hover:text-white"
-                          >
-                            <X className="h-5 w-5" />
-                          </button>
-                        </div>
-                        {project.preview && (
-                          <div className="mb-6 overflow-hidden rounded-lg">
-                            <img 
-                              src={project.preview} 
-                              alt={project.name}
-                              className="w-full h-64 object-cover object-center"
-                            />
-                          </div>
-                        )}
-                        <p className="text-gray-400 mb-4">{project.longDescription}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.technologies.map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 text-sm bg-gray-800 text-gray-300 rounded-full"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        {project.link && project.link !== "#" && (
-                          <motion.a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-white hover:text-blue-400 transition-colors"
-                            whileHover={{ x: 4 }}
-                          >
-                            View Project <ArrowUpRight className="h-4 w-4 ml-1" />
-                          </motion.a>
-                        )}
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section id="experience" className="space-y-12">
-            <h2 className="text-3xl font-bold relative">
-              <span className="text-gray-400 font-mono text-sm absolute -left-8">02.</span>
+      <nav className="fixed top-12 left-1/2 -translate-x-1/2 z-40">
+        <ul className="flex items-center gap-12 text-sm tracking-wider">
+          <li>
+            <Link to="/about" className="text-neutral-400 hover:text-white transition-colors duration-300">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/projects" className="text-neutral-400 hover:text-white transition-colors duration-300">
+              Projects
+            </Link>
+          </li>
+          <li>
+            <Link to="/experience" className="text-neutral-400 hover:text-white transition-colors duration-300">
               Experience
-            </h2>
-            <div className="space-y-12">
-              {[
-                {
-                  company: "10xLabs",
-                  role: "Co-Lead",
-                  description: "A student-run venture studio that helps technical student founders build venture-backable startups by providing mentorship, resources, and a collaborative environment to scale their ideas.",
-                },
-                {
-                  company: "Symbiosis",
-                  role: "Founder",
-                  description: "An AI-driven platform focused on revolutionizing hiring by matching applicants with teams for perfect fit, improving team cohesion and driving long-term success.",
-                },
-              ].map((exp, index) => (
-                <motion.div
-                  key={index}
-                  className="relative pl-8 border-l border-gray-800"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ x: 4 }}
-                >
-                  <div className="absolute w-3 h-3 bg-gray-800 rounded-full -left-[6.5px] top-2" />
-                  <h3 className="text-xl font-medium">{exp.company}</h3>
-                  <p className="text-gray-400 mt-1">{exp.role}</p>
-                  <p className="text-gray-500 mt-4">{exp.description}</p>
-                </motion.div>
-              ))}
-              <Link to="/experience" className="mt-8 block">
-                <motion.div 
-                  className="text-gray-400 hover:text-white transition-colors inline-flex items-center"
-                  whileHover={{ x: 4 }}
-                >
-                  View all experiences
-                  <ArrowUpRight className="h-6 w-6 text-gray-400 group-hover:text-white transition-colors transform group-hover:rotate-45 duration-300" />
-                </motion.div>
-              </Link>
-            </div>
-          </section>
+            </Link>
+          </li>
+        </ul>
+      </nav>
 
-          <section id="contact" className="space-y-6">
-            <h2 className="text-3xl font-bold">Get In Touch</h2>
-            <div className="flex space-x-6">
-              <motion.a
-                href="https://twitter.com/vermray"
-                className="flex items-center text-gray-400 hover:text-white transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Twitter className="h-5 w-5 mr-2" />
-                Twitter
-              </motion.a>
-              <motion.a
-                href="https://github.com/rverma6"
-                className="flex items-center text-gray-400 hover:text-white transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Github className="h-5 w-5 mr-2" />
-                GitHub
-              </motion.a>
-              <motion.a
-                href="https://rayvaverma.substack.com/"
-                className="flex items-center text-gray-400 hover:text-white transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                <svg 
-                  viewBox="0 0 24 24" 
-                  className="h-5 w-5 mr-2 fill-current"
-                >
-                  <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
-                </svg>
-                Substack
-              </motion.a>
-              <motion.a
-                href="mailto:rayvaverma18@gmail.com"
-                className="flex items-center text-gray-400 hover:text-white transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Mail className="h-5 w-5 mr-2" />
-                Email
-              </motion.a>
+      <div className="fixed md:right-12 md:top-1/2 md:-translate-y-1/2 right-0 bottom-0 w-full md:w-auto bg-black/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none z-40 animate-[fadeInLeft_0.8s_ease-out_0.2s_both]">
+        <ul className="flex md:flex-col items-center justify-center gap-8 py-4 md:py-0">
+          <li className="group">
+            <a
+              href="https://github.com/rverma6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-400 hover:text-white transition-colors duration-300 block p-1"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+            <div className="absolute md:right-full md:top-1/2 md:-translate-y-1/2 md:mr-4 bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-neutral-900 rounded text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              Github
             </div>
-          </section>
+          </li>
+          <li className="group">
+            <a
+              href="https://linkedin.com/in/rayvaverma"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-400 hover:text-white transition-colors duration-300 block p-2"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 px-2 py-1 bg-neutral-900 rounded text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              LinkedIn
+            </div>
+          </li>
+          <li className="group">
+            <a
+              href="https://twitter.com/vermray"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-400 hover:text-white transition-colors duration-300 block p-2"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 px-2 py-1 bg-neutral-900 rounded text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              Twitter
+            </div>
+          </li>
+          <li className="group">
+            <a
+              href="mailto:rayvaverma18@gmail.com"
+              className="text-neutral-400 hover:text-white transition-colors duration-300 block p-2"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4 px-2 py-1 bg-neutral-900 rounded text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              Email
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
+      <div className="absolute right-[15%] top-1/4 w-64 h-64 border border-neutral-800 rounded-full opacity-20 animate-[spin_20s_linear_infinite]" />
+
+      <div className="absolute left-12 top-1/4 flex flex-col gap-4">
+        <div className="w-1 h-1 rounded-full bg-neutral-400 animate-pulse" />
+        <div className="w-1 h-1 rounded-full bg-neutral-400 animate-pulse [animation-delay:200ms]" />
+        <div className="w-1 h-1 rounded-full bg-neutral-400 animate-pulse [animation-delay:400ms]" />
+      </div>
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="relative" onMouseEnter={() => setActiveSection("intro")}>
+          <div className="max-w-2xl">
+            <div className="animate-[fadeIn_1s_ease-out]">
+              <span className="block text-neutral-400 text-2xl font-light tracking-wide mb-2 animate-[slideIn_0.8s_ease-out] relative group">
+                Hey, I'm
+                <span className="absolute -right-8 top-0 font-serif italic text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:rotate-12">
+                  ✨
+                </span>
+              </span>
+              <h1 className="text-white text-6xl font-light tracking-[0.02em] lg:text-7xl animate-[slideIn_0.8s_ease-out_0.2s_both]">
+                Rayva
+                <br />
+                <span className="inline-block mt-2 relative group">
+                  Verma
+                  <span className="absolute -bottom-4 left-0 w-12 h-px bg-white/20 group-hover:w-full transition-all duration-700" />
+                </span>
+              </h1>
+            </div>
+
+            <div className="mt-12 space-y-6 text-neutral-400 animate-[fadeIn_1s_ease-out_0.3s_both]">
+              <div className="group flex items-baseline gap-3">
+                <span className="w-8 h-px bg-neutral-800 translate-y-3 group-hover:bg-neutral-600 transition-colors duration-300" />
+                <span className="text-sm tracking-wide group-hover:text-white transition-colors flex items-center gap-2">
+                  Stats + CS @ UIUC
+                </span>
+              </div>
+              <div className="group flex items-baseline gap-3">
+                <span className="w-8 h-px bg-neutral-800 translate-y-3 group-hover:bg-neutral-600 transition-colors duration-300" />
+                <span className="text-sm tracking-wide group-hover:text-white transition-colors flex items-center gap-2">
+                  Co-Lead @<a href="https://10xLabs.tech" target="_blank" rel="noopener noreferrer">10xLabs</a>
+                </span>
+              </div>
+            </div>
+
+            <p className="mt-16 text-neutral-400 text-lg max-w-lg leading-relaxed animate-[fadeIn_1s_ease-out_0.4s_both] hover:text-neutral-300 transition-colors duration-300">
+              Obsessed with improving the human experience through code. Researching equitable AI systems and fostering innovation in student entrepreneurship. Jeopardy enthusiast.
+            </p>
+
+            <Link to="/projects" className="group mt-16 inline-flex items-center gap-2 bg-white text-black px-8 py-4 text-sm uppercase tracking-wider hover:bg-neutral-100 transition-all duration-300 hover:scale-[1.02] hover:gap-4 animate-[fadeIn_1s_ease-out_0.6s_both] relative overflow-hidden">
+              <span className="relative z-10">View Portfolio</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-white to-neutral-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Link>
+          </div>
+
+          <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-neutral-800 via-white/20 to-neutral-800" />
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        ::selection {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+        }
+      `}</style>
     </main>
   );
 }

@@ -1,8 +1,0 @@
-:root {
-  --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', monospace;
-}
-
-.App {
-  font-family: var(--font-sans);
-}

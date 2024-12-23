@@ -1,61 +1,111 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import BackToHome from './BackToHome';
-import { User, Target, BookOpen } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import BackToHome from "./BackToHome";
 
+export default function About() {
+  const [mousePosition, setMousePosition] = useState({
+    x: 0,
+    y: 0,
+  });
+  const [activeSection, setActiveSection] = useState(null);
 
-const About = () => {
-  const sections = {
-    "Background": {
-      icon: <User className="w-5 h-5 text-white/70" />,
-      content: "I'm a software engineer and lifelong Jeopardy enthusiast with a passion for building innovative digital experiences, especially using Kotlin. I'm driven to create technology that makes the world easier to navigate for others like me."
-    },
-    "Current Focus": {
-      icon: <Target className="w-5 h-5 text-white/70" />,
-      content: "Currently, I'm working on a destination wedding travel coordination platform to help make travel seamless for everyone involved."
-    },
-    "Beyond Code": {
-      icon: <BookOpen className="w-5 h-5 text-white/70" />,
-      content: "When I'm not building, I'm reading. I'm currently reading The Brothers Karamazov. I also enjoy playing the french horn."
-    }
-  };
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
-    <main className="min-h-screen w-full bg-black text-white pt-32 pb-32">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <BackToHome />
-        <motion.h1 
-          className="text-4xl font-bold mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          About Me
-        </motion.h1>
+    <main className="relative w-full min-h-screen bg-black overflow-hidden cursor-none">
+      <div
+        className={`fixed w-8 h-8 rounded-full border border-white mix-blend-difference pointer-events-none z-50 transition-transform duration-100 ease-out ${activeSection ? "scale-150 opacity-50" : ""}`}
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`,
+          transform: "translate(-50%, -50%)",
+        }}
+      />
 
-        <div className="space-y-8">
-          {Object.entries(sections).map(([title, { icon, content }], index) => (
-            <motion.section
-              key={title}
-              className="border border-gray-800 rounded-lg p-6 hover:border-white/20 transition-all"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -4 }}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
+
+      <div className="absolute right-[15%] top-1/4 w-64 h-64 border border-neutral-800 rounded-full opacity-20 animate-[spin_20s_linear_infinite]" />
+
+      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 py-24">
+        <BackToHome />
+        
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-px bg-neutral-400" />
+            <p className="text-neutral-400 text-sm tracking-[0.2em] uppercase">
+              About
+            </p>
+          </div>
+          <h2 className="text-white text-4xl font-light tracking-wide mb-16">
+            My Story
+          </h2>
+
+          <div className="grid lg:grid-cols-[1fr,1fr] gap-24">
+            <div
+              className="space-y-12"
+              onMouseEnter={() => setActiveSection("story")}
+              onMouseLeave={() => setActiveSection(null)}
             >
-              <h2 className="text-2xl font-semibold mb-4 flex items-center gap-3">
-                {icon}
-                {title}
-              </h2>
-              <p className="text-lg text-gray-400 leading-relaxed">
-                {content}
-              </p>
-            </motion.section>
-          ))}
+              <div className="space-y-6">
+                <p className="text-neutral-300 text-lg leading-relaxed">
+                  I'm a software engineer and lifelong Jeopardy enthusiast with a passion for building innovative digital experiences, especially using Kotlin. I'm driven to create technology that makes the world easier to navigate for others like me.
+                </p>
+                <p className="text-neutral-400 leading-relaxed">
+                  When I'm not building, I'm reading. I'm currently reading The Brothers Karamazov. I also enjoy playing the french horn.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <h3 className="text-white text-xl font-light">
+                  Current Focus
+                </h3>
+                <p className="text-neutral-400 leading-relaxed">
+                  Currently, I'm working on a destination wedding travel coordination platform to help make travel seamless for everyone involved.
+                </p>
+              </div>
+            </div>
+
+            <div
+              className="space-y-12"
+              onMouseEnter={() => setActiveSection("interests")}
+              onMouseLeave={() => setActiveSection(null)}
+            >
+              <div className="space-y-6">
+                <h3 className="text-white text-xl font-light">Beyond Code</h3>
+                <div className="space-y-4">
+                  <div className="group p-4 rounded-lg hover:bg-neutral-900/30 transition-colors duration-300">
+                    <h4 className="text-neutral-200 mb-2">Reading</h4>
+                    <p className="text-neutral-400 text-sm leading-relaxed">
+                      Currently exploring Russian literature through The Brothers Karamazov
+                    </p>
+                  </div>
+                  <div className="group p-4 rounded-lg hover:bg-neutral-900/30 transition-colors duration-300">
+                    <h4 className="text-neutral-200 mb-2">Music</h4>
+                    <p className="text-neutral-400 text-sm leading-relaxed">
+                      French horn player and classical music enthusiast
+                    </p>
+                  </div>
+                  <div className="group p-4 rounded-lg hover:bg-neutral-900/30 transition-colors duration-300">
+                    <h4 className="text-neutral-200 mb-2">Trivia</h4>
+                    <p className="text-neutral-400 text-sm leading-relaxed">
+                      Jeopardy enthusiast and knowledge seeker
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>
   );
-};
-
-export default About; 
+} 
