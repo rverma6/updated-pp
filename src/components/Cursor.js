@@ -1,26 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Cursor = () => {
+const Cursor = ({ isActive }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setPosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
+    const onMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+
+    // Set cursor style on mount
+    document.documentElement.style.setProperty('cursor', 'none', 'important');
+    document.body.style.setProperty('cursor', 'none', 'important');
+    
+    // Add event listener
+    window.addEventListener('mousemove', onMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+    };
   }, []);
 
   return (
     <div
-      className="fixed w-8 h-8 rounded-full border border-white mix-blend-difference pointer-events-none z-50 transition-transform duration-100 ease-out"
       style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        transform: "translate(-50%, -50%)",
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '32px',
+        height: '32px',
+        pointerEvents: 'none',
+        zIndex: 9999,
+        mixBlendMode: 'difference',
+        transform: `translate(${position.x - 16}px, ${position.y - 16}px) scale(${isActive ? 1.5 : 1})`,
+        border: '1px solid white',
+        borderRadius: '50%',
+        transition: 'transform 150ms ease-out',
+        cursor: 'none'
       }}
     />
   );

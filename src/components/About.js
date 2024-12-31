@@ -1,36 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import BackToHome from "./BackToHome";
 
 export default function About() {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-  const [activeSection, setActiveSection] = useState(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <main className="relative w-full min-h-screen bg-black overflow-hidden cursor-none">
-      <div
-        className={`fixed w-8 h-8 rounded-full border border-white mix-blend-difference pointer-events-none z-50 transition-transform duration-100 ease-out ${activeSection ? "scale-150 opacity-50" : ""}`}
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
-
+    <main className="relative w-full min-h-screen bg-black overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
 
       <div className="absolute right-[15%] top-1/4 w-64 h-64 border border-neutral-800 rounded-full opacity-20 animate-[spin_20s_linear_infinite]" />
@@ -50,11 +24,7 @@ export default function About() {
           </h2>
 
           <div className="grid lg:grid-cols-[1fr,1fr] gap-24">
-            <div
-              className="space-y-12"
-              onMouseEnter={() => setActiveSection("story")}
-              onMouseLeave={() => setActiveSection(null)}
-            >
+            <div className="space-y-12">
               <div className="space-y-6">
                 <p className="text-neutral-300 text-lg leading-relaxed">
                   I'm a software engineer and lifelong Jeopardy enthusiast with a passion for building innovative digital experiences, especially using Kotlin. I'm driven to create technology that makes the world easier to navigate for others like me.
@@ -74,11 +44,7 @@ export default function About() {
               </div>
             </div>
 
-            <div
-              className="space-y-12"
-              onMouseEnter={() => setActiveSection("interests")}
-              onMouseLeave={() => setActiveSection(null)}
-            >
+            <div className="space-y-12">
               <div className="space-y-6">
                 <h3 className="text-white text-xl font-light">Beyond Code</h3>
                 <div className="space-y-4">

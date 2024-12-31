@@ -3,21 +3,30 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
+  body {
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
 
-  body {
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
-    font-family: var(--fonts-body);
-    color: white;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
 }

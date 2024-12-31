@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, X } from 'lucide-react';
 import BackToHome from './BackToHome';
 import { allProjects } from '../data/projects';
 
 const Projects = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showAll, setShowAll] = useState(false);
-  const [activeProject, setActiveProject] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   const projectColors = {
     "GNN-Driven Drug Interaction Predictor": "from-purple-500/20 to-blue-500/20",
@@ -34,22 +21,15 @@ const Projects = () => {
   const displayedProjects = showAll ? allProjects : allProjects.slice(0, 4);
 
   return (
-    <main className="relative w-full min-h-screen bg-black overflow-hidden cursor-none">
-      <div
-        className={`fixed w-8 h-8 rounded-full border border-white mix-blend-difference pointer-events-none z-50 transition-transform duration-100 ease-out ${activeProject ? "scale-150 opacity-50" : ""}`}
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+    <main className="relative w-full min-h-screen bg-black overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
+      <div className="absolute left-1/4 top-0 w-px h-screen bg-gradient-to-b from-neutral-800 via-white/20 to-neutral-800" />
 
-      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 py-24">
+      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 py-12">
         <BackToHome />
         
-        <div className="mb-20">
+        <div className="mb-16 ml-24">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-px bg-neutral-400" />
             <p className="text-neutral-400 text-sm tracking-[0.2em] uppercase">
@@ -61,13 +41,11 @@ const Projects = () => {
           </h2>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2 ml-24">
           {displayedProjects.map((project, index) => (
             <motion.div
               key={project.name}
               className="group relative bg-neutral-900/50 rounded-lg overflow-hidden"
-              onMouseEnter={() => setActiveProject(project.name)}
-              onMouseLeave={() => setActiveProject(null)}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -119,54 +97,56 @@ const Projects = () => {
       </div>
 
       {/* Project Details Modal */}
-      {selectedProject && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto"
-        >
-          <div className="relative bg-neutral-900 max-w-3xl rounded-lg p-8">
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-white"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            
-            <h2 className="text-3xl font-light text-white mb-4">{selectedProject.name}</h2>
-            <p className="text-neutral-400 mb-6">{selectedProject.longDescription}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
-              {selectedProject.technologies.map((tech, i) => (
-                <span key={i} className="px-3 py-1 text-sm bg-neutral-800 text-neutral-300 rounded-full">
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            {selectedProject.preview && (
-              <img 
-                src={selectedProject.preview}
-                alt={selectedProject.name}
-                className="w-full rounded-lg mb-6"
-                onClick={() => setSelectedImage(selectedProject.preview)}
-              />
-            )}
-
-            {selectedProject.link && selectedProject.link !== "#" && (
-              <a
-                href={selectedProject.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors"
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 overflow-y-auto"
+          >
+            <div className="relative bg-neutral-900 max-w-3xl rounded-lg p-8">
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 text-neutral-400 hover:text-white"
               >
-                View Repository <ArrowUpRight className="h-4 w-4" />
-              </a>
-            )}
-          </div>
-        </motion.div>
-      )}
+                <X className="h-6 w-6" />
+              </button>
+              
+              <h2 className="text-3xl font-light text-white mb-4">{selectedProject.name}</h2>
+              <p className="text-neutral-400 mb-6">{selectedProject.longDescription}</p>
+              
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedProject.technologies.map((tech, i) => (
+                  <span key={i} className="px-3 py-1 text-sm bg-neutral-800 text-neutral-300 rounded-full">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {selectedProject.preview && (
+                <img 
+                  src={selectedProject.preview}
+                  alt={selectedProject.name}
+                  className="w-full rounded-lg mb-6"
+                  onClick={() => setSelectedImage(selectedProject.preview)}
+                />
+              )}
+
+              {selectedProject.link && selectedProject.link !== "#" && (
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors"
+                >
+                  View Repository <ArrowUpRight className="h-4 w-4" />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Image Lightbox */}
       <AnimatePresence>
