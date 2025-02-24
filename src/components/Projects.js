@@ -24,8 +24,6 @@ const Projects = () => {
     <main className="relative w-full min-h-screen bg-black overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,black_40%,transparent_100%)]" />
 
-      <div className="absolute left-1/4 top-0 w-px h-screen bg-gradient-to-b from-neutral-800 via-white/20 to-neutral-800" />
-
       <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 py-12">
         <BackToHome />
         
